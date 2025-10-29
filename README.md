@@ -124,5 +124,5 @@ Pour toute question :
 
 ---
 
-**Fait avec ❤️ par Marine pour le BlaBlaRun Club**
+**Fait avec ❤️ par Noanweb pour le BlaBlaRun Club**
 
