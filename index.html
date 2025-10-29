@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlaBlaRun Club - Nancy</title>
+    <meta name="description" content="BlaBlaRun Club - Footing hebdomadaire à Nancy. Courir, Partager, Sourire.">
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="assets/logo.jpeg" alt="BlaBlaRun Club Logo">
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                    <li><a href="#actualites" class="nav-link">Actualités</a></li>
+                    <li><a href="#apropos" class="nav-link">À propos</a></li>
+                    <li><a href="#groupes" class="nav-link">Groupes</a></li>
+                    <li><a href="#adhesion" class="nav-link">Adhésion</a></li>
+                    <li><a href="#infos" class="nav-link">Infos pratiques</a></li>
+                    <li><a href="#rejoindre" class="nav-link">Nous contacter</a></li>
+                </ul>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Section Hero / Accueil -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">BlaBlaRun Club<br><span class="hero-tagline">Courir, Partager, Sourire.</span></h1>
+            <p class="hero-subtitle">Footing ouvert à tous, chaque mardi à 18h30 – Place Stanislas, Nancy.</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Section Actualités -->
+    <section id="actualites" class="actualites">
+        <div class="container">
+            <div class="section-header">
+                <h2>Actualités</h2>
+                <div class="underline"></div>
+                <p class="section-subtitle">Les dernières nouvelles du club</p>
+            </div>
+            <div class="actualites-content">
+                <div class="actualite-featured" id="actualiteImage">
+                    <img src="assets/actualite.jpeg" alt="Actualité BlaBlaRun Club">
+                    <div class="actualite-overlay">
+                        <span class="actualite-badge">Nouveau</span>
+                        <h3>Dernière actualité du club</h3>
+                        <p>Découvrez les dernières nouvelles et événements à venir</p>
+                        <span class="zoom-hint">Cliquer pour agrandir</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Lightbox pour l'image -->
+    <div id="imageLightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" src="" alt="Actualité">
+        <div class="lightbox-caption"></div>
+    </div>
+
+    <!-- Section À propos -->
+    <section id="apropos" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>À propos du club</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        <strong>BlaBlaRun Club</strong>, c'est un footing hebdomadaire à Nancy.
+                        Trois groupes d'allure, une ambiance conviviale, et un départ commun depuis la Place Stanislas.
+                    </p>
+                    <p>
+                        Que vous soyez débutant ou coureur confirmé, vous trouverez votre rythme parmi nos trois groupes.
+                        L'objectif ? Partager un moment sportif dans la bonne humeur, découvrir Nancy en courant,
+                        et créer du lien autour d'une passion commune.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="assets/groupe.jpeg" alt="Groupe BlaBlaRun Club en course">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Fondateur -->
+    <section id="fondateur" class="founder">
+        <div class="container">
+            <div class="section-header">
+                <h2>Le Fondateur</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="founder-content">
+                <div class="founder-image">
+                    <img src="assets/val.jpeg" alt="Valentin Bourrel - Fondateur BlaBlaRun Club">
+                </div>
+                <div class="founder-info">
+                    <h3>Valentin Bourrel</h3>
+                    <p class="founder-role">Fondateur du BlaBlaRun Club</p>
+                    <p class="founder-description">
+                        Passionné de course à pied et convaincu que le sport rassemble, Valentin a créé le BlaBlaRun Club 
+                        pour partager sa passion et créer une communauté de coureurs à Nancy. Son objectif : rendre la course 
+                        accessible à tous, dans une ambiance conviviale et sans prise de tête.
+                    </p>
+                    <a href="https://www.instagram.com/valentinbourrel/" target="_blank" rel="noopener noreferrer" class="founder-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="#3b82f6"/>
+                        </svg>
+                        <span>@valentinbourrel</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Groupes -->
+    <section id="groupes" class="groups">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nos groupes d'allure</h2>
+                <div class="underline"></div>
+                <p class="section-subtitle">Quel que soit votre niveau, il y a un groupe pour vous</p>
+            </div>
+            <div class="groups-grid">
+                <div class="group-card">
+                    <div class="group-badge cool">Cool</div>
+                    <h3>Groupe Cool</h3>
+                    <div class="group-pace">~6:30 min/km</div>
+                    <p>Pour les débutants ou ceux qui préfèrent une allure tranquille et conviviale</p>
+                    <div class="group-distance">8-10 km</div>
+                </div>
+                <div class="group-card featured">
+                    <div class="group-badge intermediate">Intermédiaire</div>
+                    <h3>Groupe Intermédiaire</h3>
+                    <div class="group-pace">~5:30 min/km</div>
+                    <p>Pour les coureurs réguliers qui cherchent un bon équilibre effort/plaisir</p>
+                    <div class="group-distance">10-12 km</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-badge fast">Rapide</div>
+                    <h3>Groupe Rapide</h3>
+                    <div class="group-pace">~4:30 min/km</div>
+                    <p>Pour les coureurs confirmés en quête de performance et de dépassement</p>
+                    <div class="group-distance">12-15 km</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Adhésion -->
+    <section id="adhesion" class="adhesion">
+        <div class="container">
+            <div class="section-header">
+                <h2>Adhésion au club</h2>
+                <div class="underline"></div>
+                <p class="section-subtitle">Soutenez le club et profitez d'avantages exclusifs</p>
+            </div>
+            <div class="adhesion-content">
+                <div class="adhesion-info">
+                    <div class="adhesion-card">
+                        <div class="adhesion-icon">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <h3>Adhésion Annuelle</h3>
+                        <div class="adhesion-price">
+                            <span class="price-amount">10€</span>
+                            <span class="price-period">/ an</span>
+                        </div>
+                        <ul class="adhesion-benefits">
+                            <li>✓ Carte de membre officielle</li>
+                            <li>✓ Réductions chez nos commerçants partenaires</li>
+                            <li>✓ Événements exclusifs</li>
+                            <li>✓ Soutien au développement du club</li>
+                        </ul>
+                        <button id="checkout-button" class="btn-primary btn-adhesion">
+                            Adhérer maintenant
+                        </button>
+                        <p class="payment-info">Paiement sécurisé </p>
+                    </div>
+                </div>
+                <div class="adhesion-details">
+                    <h3>Pourquoi adhérer ?</h3>
+                    <p>
+                        Votre adhésion nous permet de développer le club, d'organiser des événements exceptionnels
+                        et de maintenir une communauté active et dynamique. En devenant membre, vous soutenez
+                        directement la passion du running à Nancy.
+                    </p>
+                    <div class="adhesion-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">💳</span>
+                            <div>
+                                <h4>Carte de membre</h4>
+                                <p>Recevez votre carte officielle BlaBlaRun Club</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏪</span>
+                            <div>
+                                <h4>Réductions exclusives</h4>
+                                <p>Profitez de réductions chez nos commerçants partenaires</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎉</span>
+                            <div>
+                                <h4>Événements exclusifs</h4>
+                                <p>Accès prioritaire aux sorties spéciales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Infos pratiques -->
+    <section id="infos" class="infos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Infos pratiques</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="infos-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#3b82f6"/>
+                        </svg>
+                    </div>
+                    <h3>Rendez-vous</h3>
+                    <p>Place Stanislas<br>Nancy, France</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" fill="#3b82f6"/>
+                        </svg>
+                    </div>
+                    <h3>Horaire</h3>
+                    <p>18h30 - Rassemblement<br>18h40 - Départ</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z" fill="#3b82f6"/>
+                        </svg>
+                    </div>
+                    <h3>Quand</h3>
+                    <p>Tous les mardis<br>Toute l'année</p>
+                </div>
+            </div>
+            <div class="links-section">
+                <h3>Rejoignez notre communauté</h3>
+                <div class="links-grid">
+                    <a href="https://www.strava.com/clubs/1558459/discussion" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <div class="link-icon">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 5L13 20H17L20 13L23 20H27L20 5Z" fill="#3b82f6"/>
+                                <path d="M23 20L20 27L17 20H20H23Z" fill="#3b82f6" opacity="0.6"/>
+                            </svg>
+                        </div>
+                        <div class="link-text">
+                            <h4>Strava du club</h4>
+                            <p>Suivez nos sorties et performances</p>
+                        </div>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1oP1xuW8OSzuzBJgjElOf0x_RNZp8PrbS" target="_blank" rel="noopener noreferrer" class="link-card">
+                        <div class="link-icon">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 8L20 8L28 8L32 15L24 28H16L8 15L12 8Z" fill="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <div class="link-text">
+                            <h4>Google Drive</h4>
+                            <p>Photos, parcours et documents</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Codes Promo / Partenaires -->
+    <section id="codes-promo" class="promo-codes">
+        <div class="container">
+            <div class="section-header">
+                <h2>Codes Promo Partenaires</h2>
+                <div class="underline"></div>
+                <p class="section-subtitle">Profitez de réductions exclusives</p>
+            </div>
+            <div class="promo-grid">
+                <div class="promo-card">
+                    <div class="promo-logo">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 7.5L19.5 30H25.5L30 19.5L34.5 30H40.5L30 7.5Z" fill="#FC4C02"/>
+                            <path d="M34.5 30L30 40.5L25.5 30H30H34.5Z" fill="#FC4C02" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <h3>STRAVA</h3>
+                    <div class="promo-discount">-20% sur l'abonnement annuel</div>
+                    <div class="promo-code-wrapper">
+                        <span class="promo-label">Code :</span>
+                        <span class="promo-code">VAL20</span>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <div class="promo-logo nutripure">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="25" fill="#3b82f6" opacity="0.2"/>
+                            <path d="M30 15L35 25L45 20L40 30L50 35L40 40L45 50L35 45L30 55L25 45L15 50L20 40L10 35L20 30L15 20L25 25L30 15Z" fill="#3b82f6"/>
+                        </svg>
+                    </div>
+                    <h3>NUTRIPURE</h3>
+                    <div class="promo-discount">-10% sur tout le site</div>
+                    <div class="promo-code-wrapper">
+                        <span class="promo-label">Code parrain :</span>
+                        <span class="promo-code">1944772301</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Galerie (Bonus) -->
+    <section id="galerie" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Galerie photos</h2>
+                <div class="underline"></div>
+                <p class="section-subtitle">Quelques moments mémorables du club</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 1</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 2</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 3</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 4</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 5</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 6</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 7</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
+                        </svg>
+                        <p>Photo 8</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Rejoindre / Contact -->
+    <section id="rejoindre" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nous contacter</h2>
+                <div class="underline"></div>
+                <p class="section-subtitle">Une question ? Envie d'en savoir plus ? Écris-nous !</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Pas besoin d'inscription</h3>
+                    <p>Le BlaBlaRun Club est ouvert à tous, sans inscription préalable. Il suffit de venir le mardi à 18h30 place Stanislas !</p>
+                    <div class="contact-links">
+                        <a href="https://www.strava.com/clubs/1558459/discussion" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                            Rejoindre sur Strava
+                        </a>
+                        <a href="https://drive.google.com/drive/folders/1oP1xuW8OSzuzBJgjElOf0x_RNZp8PrbS" target="_blank" rel="noopener noreferrer" class="btn-outline">
+                            Accéder au Drive
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <h3>Une question ?</h3>
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logo.jpeg" alt="BlaBlaRun Club Logo">
+                    <p>Courir, Partager, Sourire.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#actualites">Actualités</a></li>
+                        <li><a href="#apropos">À propos</a></li>
+                        <li><a href="#groupes">Groupes</a></li>
+                        <li><a href="#adhesion">Adhésion</a></li>
+                        <li><a href="#infos">Infos pratiques</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Nous suivre</h4>
+                    <ul>
+                        <li><a href="https://www.strava.com/clubs/1558459/discussion" target="_blank" rel="noopener noreferrer">Strava</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1oP1xuW8OSzuzBJgjElOf0x_RNZp8PrbS" target="_blank" rel="noopener noreferrer">Google Drive</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BlaBlaRun Club. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Badge circulaire flottant "Contacte-nous" -->
+    <a href="#rejoindre" class="circular-badge" aria-label="Nous contacter">
+        <svg viewBox="0 0 140 140">
+            <path id="circlePath" d="M 70,70 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" fill="none"/>
+            <text font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#0a0a0a">
+                <textPath href="#circlePath" startOffset="0">
+                    CONTACTE-NOUS • CONTACTE-NOUS • CONTACTE-NOUS • 
+                </textPath>
+            </text>
+        </svg>
+        <span class="circular-badge-arrow">→</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
