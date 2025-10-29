@@ -15,6 +15,9 @@
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
     
+    /* Polices personnalisées */
+    --font-michroma: 'Michroma', sans-serif;
+    
     /* Espacements */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -282,43 +285,69 @@ ul {
     padding-top: calc(var(--spacing-xxl) + 70px);
 }
 
-/* Éléments décoratifs animés - Images */
-.hero::before {
-    content: '';
+.hero-background-image {
     position: absolute;
-    top: 15%;
-    right: 10%;
-    width: 280px;
-    height: 280px;
-    background: url('assets/shoe-icon.png') no-repeat center;
-    background-size: contain;
-    opacity: 1;
-    animation: floatShoe 6s ease-in-out infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url('assets/runner.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
 }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: 20%;
-    left: 8%;
-    width: 80px;
-    height: 80px;
-    background: url('assets/chrono-icon.png') no-repeat center;
-    background-size: contain;
-    opacity: 0.15;
-    animation: rotateTimer 8s linear infinite;
+/* Fallback CSS animé si WebGL n'est pas disponible */
+.css-burst-fallback {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(59, 130, 246, 0.2) 0%, 
+        rgba(96, 165, 250, 0.15) 40%, 
+        transparent 70%);
+    animation: burstPulse 4s ease-in-out infinite;
 }
 
-@keyframes floatShoe {
+.css-burst-fallback::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(59, 130, 246, 0.15) 0%, 
+        transparent 50%);
+    animation: burstRotate 8s linear infinite;
+}
+
+.css-burst-fallback::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 70%, 
+        rgba(96, 165, 250, 0.15) 0%, 
+        transparent 50%);
+    animation: burstRotate 12s linear infinite reverse;
+}
+
+@keyframes burstPulse {
     0%, 100% {
-        transform: translateY(0) rotate(-5deg);
+        transform: scale(1);
+        opacity: 0.3;
     }
     50% {
-        transform: translateY(-30px) rotate(5deg);
+        transform: scale(1.2);
+        opacity: 0.5;
     }
 }
 
-@keyframes rotateTimer {
+@keyframes burstRotate {
     0% {
         transform: rotate(0deg);
     }
@@ -327,11 +356,20 @@ ul {
     }
 }
 
+/* Éléments décoratifs animés - Images */
+.hero::before {
+    display: none;
+}
+
+.hero::after {
+    display: none;
+}
+
 /* Lignes de course animées - effet de vitesse - DÉSACTIVÉ */
 
 .hero-content {
     position: relative;
-    z-index: 3;
+    z-index: 10;
     max-width: 1000px;
     animation: heroFadeIn 1s ease-out;
 }
@@ -348,9 +386,10 @@ ul {
 }
 
 .hero-title {
-    font-family: var(--font-display);
+    font-family: "Michroma", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     font-size: 5.5rem;
-    font-weight: 700;
     margin-bottom: var(--spacing-md);
     line-height: 1.1;
     color: var(--color-black);
@@ -380,7 +419,13 @@ ul {
 }
 
 .hero-overlay {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.6) 100%);
+    z-index: 1;
 }
 
 /* ==========================================
@@ -563,6 +608,58 @@ section {
     transform: rotate(90deg);
 }
 
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(59, 130, 246, 0.8);
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10001;
+    padding: 0;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-nav:hover {
+    background: var(--color-lime);
+    transform: translateY(-50%) scale(1.1);
+    border-color: var(--color-black);
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+.lightbox-nav svg {
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .lightbox-nav {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .lightbox-prev {
+        left: 15px;
+    }
+    
+    .lightbox-next {
+        right: 15px;
+    }
+}
+
 /* ==========================================
    SECTION À PROPOS
    ========================================== */
@@ -573,13 +670,7 @@ section {
 
 /* Élément décoratif animé - Feu/Énergie */
 .about::after {
-    content: '🔥';
-    position: absolute;
-    font-size: 3.5rem;
-    bottom: 15%;
-    right: 5%;
-    opacity: 0.12;
-    animation: pulse 2s ease-in-out infinite;
+    display: none;
 }
 
 @keyframes pulse {
@@ -642,6 +733,22 @@ section {
     box-shadow: 0 16px 48px rgba(59, 130, 246, 0.4);
 }
 
+.about-groups,
+.about-infos {
+    margin-top: var(--spacing-xxl);
+    padding-top: var(--spacing-xxl);
+    border-top: 2px solid var(--color-grey-light);
+}
+
+.about-subsection-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-black);
+    font-weight: 700;
+    text-align: center;
+}
+
 /* ==========================================
    SECTION FONDATEUR
    ========================================== */
@@ -652,13 +759,7 @@ section {
 
 /* Élément décoratif animé - Flash/Vitesse */
 .founder::after {
-    content: '⚡';
-    position: absolute;
-    font-size: 4rem;
-    top: 15%;
-    right: 10%;
-    opacity: 0.1;
-    animation: flash 2s ease-in-out infinite;
+    display: none;
 }
 
 @keyframes flash {
@@ -760,13 +861,7 @@ section {
 
 /* Élément décoratif animé - Médaille */
 .groups::before {
-    content: '🏅';
-    position: absolute;
-    font-size: 3rem;
-    top: 10%;
-    left: 5%;
-    opacity: 0.1;
-    animation: bounce 3s ease-in-out infinite;
+    display: none;
 }
 
 @keyframes bounce {
@@ -1001,10 +1096,6 @@ section {
     transform: translateX(10px);
 }
 
-.feature-icon {
-    font-size: 2.5rem;
-    flex-shrink: 0;
-}
 
 .feature-item h4 {
     font-family: var(--font-display);
@@ -1030,13 +1121,7 @@ section {
 
 /* Élément décoratif animé - Étoile/Succès */
 .infos::before {
-    content: '⭐';
-    position: absolute;
-    font-size: 3rem;
-    top: 20%;
-    right: 8%;
-    opacity: 0.1;
-    animation: twinkle 4s ease-in-out infinite;
+    display: none;
 }
 
 @keyframes twinkle {
@@ -1095,6 +1180,10 @@ section {
     color: var(--color-grey);
     line-height: 1.8;
     font-size: 1.1rem;
+}
+
+.links {
+    background: var(--color-cream);
 }
 
 .links-section {
@@ -1243,11 +1332,19 @@ section {
 }
 
 /* ==========================================
-   SECTION GALERIE - SLIDER HORIZONTAL
+   SECTION GALERIE - DOM GALLERY
    ========================================== */
 .gallery {
     background: var(--color-cream);
     overflow: hidden;
+}
+
+.masonry-item {
+    display: none; /* Masquer les éléments sources, ils sont utilisés par JS */
+}
+
+.masonry-item img {
+    display: none;
 }
 
 .gallery-grid {
@@ -1291,6 +1388,14 @@ section {
     transition: var(--transition);
     border: 2px solid var(--color-black);
     flex-shrink: 0;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .gallery-item:hover {
@@ -1703,4 +1808,13 @@ section {
     .circular-badge {
         display: none;
     }
+}
+
+/* ==========================================
+   POLICE MICHROMA
+   ========================================== */
+.michroma-regular {
+    font-family: "Michroma", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }

@@ -9,8 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Badeen+Display&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="masonry.css">
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -22,12 +30,10 @@
             <div class="nav-menu" id="navMenu">
                 <ul class="nav-list">
                     <li><a href="#accueil" class="nav-link">Accueil</a></li>
-                    <li><a href="#actualites" class="nav-link">Actualités</a></li>
                     <li><a href="#apropos" class="nav-link">À propos</a></li>
-                    <li><a href="#groupes" class="nav-link">Groupes</a></li>
+                    <li><a href="#fondateur" class="nav-link">Fondateur</a></li>
                     <li><a href="#adhesion" class="nav-link">Adhésion</a></li>
-                    <li><a href="#infos" class="nav-link">Infos pratiques</a></li>
-                    <li><a href="#rejoindre" class="nav-link">Nous contacter</a></li>
+                    <li><a href="#liens" class="nav-link">Nos liens</a></li>
                 </ul>
             </div>
             <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -40,6 +46,7 @@
 
     <!-- Section Hero / Accueil -->
     <section id="accueil" class="hero">
+        <div class="hero-background-image"></div>
         <div class="hero-content">
             <h1 class="hero-title">BlaBlaRun Club<br><span class="hero-tagline">Courir, Partager, Sourire.</span></h1>
             <p class="hero-subtitle">Footing ouvert à tous, chaque mardi à 18h30 – Place Stanislas, Nancy.</p>
@@ -72,6 +79,16 @@
     <!-- Modal Lightbox pour l'image -->
     <div id="imageLightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Image précédente">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#FFFFFF"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Image suivante">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#FFFFFF"/>
+            </svg>
+        </button>
         <img class="lightbox-content" id="lightboxImg" src="" alt="Actualité">
         <div class="lightbox-caption"></div>
     </div>
@@ -97,6 +114,69 @@
                 </div>
                 <div class="about-image">
                     <img src="assets/groupe.jpeg" alt="Groupe BlaBlaRun Club en course">
+                </div>
+            </div>
+            
+            <!-- Nos groupes d'allure -->
+            <div class="about-groups">
+                <h3 class="about-subsection-title">Nos groupes d'allure</h3>
+                <p class="section-subtitle">Quel que soit votre niveau, il y a un groupe pour vous</p>
+                <div class="groups-grid">
+                    <div class="group-card">
+                        <div class="group-badge cool">Cool</div>
+                        <h3>Groupe Cool</h3>
+                        <div class="group-pace">~6:30 min/km</div>
+                        <p>Pour les débutants ou ceux qui préfèrent une allure tranquille et conviviale</p>
+                        <div class="group-distance">8-10 km</div>
+                    </div>
+                    <div class="group-card featured">
+                        <div class="group-badge intermediate">Intermédiaire</div>
+                        <h3>Groupe Intermédiaire</h3>
+                        <div class="group-pace">~5:30 min/km</div>
+                        <p>Pour les coureurs réguliers qui cherchent un bon équilibre effort/plaisir</p>
+                        <div class="group-distance">10-12 km</div>
+                    </div>
+                    <div class="group-card">
+                        <div class="group-badge fast">Rapide</div>
+                        <h3>Groupe Rapide</h3>
+                        <div class="group-pace">~4:30 min/km</div>
+                        <p>Pour les coureurs confirmés en quête de performance et de dépassement</p>
+                        <div class="group-distance">12-15 km</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Infos pratiques -->
+            <div class="about-infos">
+                <h3 class="about-subsection-title">Infos pratiques</h3>
+                <div class="infos-grid">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <h3>Rendez-vous</h3>
+                        <p>Place Stanislas<br>Nancy, France</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" fill="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <h3>Horaire</h3>
+                        <p>18h30 - Rassemblement<br>18h40 - Départ</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z" fill="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <h3>Quand</h3>
+                        <p>Tous les mardis<br>Toute l'année</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,40 +207,6 @@
                         </svg>
                         <span>@valentinbourrel</span>
                     </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Groupes -->
-    <section id="groupes" class="groups">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nos groupes d'allure</h2>
-                <div class="underline"></div>
-                <p class="section-subtitle">Quel que soit votre niveau, il y a un groupe pour vous</p>
-            </div>
-            <div class="groups-grid">
-                <div class="group-card">
-                    <div class="group-badge cool">Cool</div>
-                    <h3>Groupe Cool</h3>
-                    <div class="group-pace">~6:30 min/km</div>
-                    <p>Pour les débutants ou ceux qui préfèrent une allure tranquille et conviviale</p>
-                    <div class="group-distance">8-10 km</div>
-                </div>
-                <div class="group-card featured">
-                    <div class="group-badge intermediate">Intermédiaire</div>
-                    <h3>Groupe Intermédiaire</h3>
-                    <div class="group-pace">~5:30 min/km</div>
-                    <p>Pour les coureurs réguliers qui cherchent un bon équilibre effort/plaisir</p>
-                    <div class="group-distance">10-12 km</div>
-                </div>
-                <div class="group-card">
-                    <div class="group-badge fast">Rapide</div>
-                    <h3>Groupe Rapide</h3>
-                    <div class="group-pace">~4:30 min/km</div>
-                    <p>Pour les coureurs confirmés en quête de performance et de dépassement</p>
-                    <div class="group-distance">12-15 km</div>
                 </div>
             </div>
         </div>
@@ -208,21 +254,18 @@
                     </p>
                     <div class="adhesion-features">
                         <div class="feature-item">
-                            <span class="feature-icon">💳</span>
                             <div>
                                 <h4>Carte de membre</h4>
                                 <p>Recevez votre carte officielle BlaBlaRun Club</p>
                             </div>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">🏪</span>
                             <div>
                                 <h4>Réductions exclusives</h4>
                                 <p>Profitez de réductions chez nos commerçants partenaires</p>
                             </div>
                         </div>
                         <div class="feature-item">
-                            <span class="feature-icon">🎉</span>
                             <div>
                                 <h4>Événements exclusifs</h4>
                                 <p>Accès prioritaire aux sorties spéciales</p>
@@ -234,69 +277,37 @@
         </div>
     </section>
 
-    <!-- Section Infos pratiques -->
-    <section id="infos" class="infos">
+    <!-- Section Nos liens -->
+    <section id="liens" class="links">
         <div class="container">
             <div class="section-header">
-                <h2>Infos pratiques</h2>
+                <h2>Nos liens</h2>
                 <div class="underline"></div>
             </div>
-            <div class="infos-grid">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#3b82f6"/>
+            <div class="links-grid">
+                <a href="https://www.strava.com/clubs/1558459/discussion" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 5L13 20H17L20 13L23 20H27L20 5Z" fill="#3b82f6"/>
+                            <path d="M23 20L20 27L17 20H20H23Z" fill="#3b82f6" opacity="0.6"/>
                         </svg>
                     </div>
-                    <h3>Rendez-vous</h3>
-                    <p>Place Stanislas<br>Nancy, France</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" fill="#3b82f6"/>
+                    <div class="link-text">
+                        <h4>Strava du club</h4>
+                        <p>Suivez nos sorties et performances</p>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/drive/folders/1oP1xuW8OSzuzBJgjElOf0x_RNZp8PrbS" target="_blank" rel="noopener noreferrer" class="link-card">
+                    <div class="link-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 8L20 8L28 8L32 15L24 28H16L8 15L12 8Z" fill="#3b82f6"/>
                         </svg>
                     </div>
-                    <h3>Horaire</h3>
-                    <p>18h30 - Rassemblement<br>18h40 - Départ</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">
-                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z" fill="#3b82f6"/>
-                        </svg>
+                    <div class="link-text">
+                        <h4>Google Drive</h4>
+                        <p>Photos, parcours et documents</p>
                     </div>
-                    <h3>Quand</h3>
-                    <p>Tous les mardis<br>Toute l'année</p>
-                </div>
-            </div>
-            <div class="links-section">
-                <h3>Rejoignez notre communauté</h3>
-                <div class="links-grid">
-                    <a href="https://www.strava.com/clubs/1558459/discussion" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <div class="link-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 5L13 20H17L20 13L23 20H27L20 5Z" fill="#3b82f6"/>
-                                <path d="M23 20L20 27L17 20H20H23Z" fill="#3b82f6" opacity="0.6"/>
-                            </svg>
-                        </div>
-                        <div class="link-text">
-                            <h4>Strava du club</h4>
-                            <p>Suivez nos sorties et performances</p>
-                        </div>
-                    </a>
-                    <a href="https://drive.google.com/drive/folders/1oP1xuW8OSzuzBJgjElOf0x_RNZp8PrbS" target="_blank" rel="noopener noreferrer" class="link-card">
-                        <div class="link-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 8L20 8L28 8L32 15L24 28H16L8 15L12 8Z" fill="#3b82f6"/>
-                            </svg>
-                        </div>
-                        <div class="link-text">
-                            <h4>Google Drive</h4>
-                            <p>Photos, parcours et documents</p>
-                        </div>
-                    </a>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -342,7 +353,7 @@
         </div>
     </section>
 
-    <!-- Section Galerie (Bonus) -->
+    <!-- Section Galerie -->
     <section id="galerie" class="gallery">
         <div class="container">
             <div class="section-header">
@@ -350,70 +361,27 @@
                 <div class="underline"></div>
                 <p class="section-subtitle">Quelques moments mémorables du club</p>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 1</p>
-                    </div>
+            <div id="masonryGallery" class="list">
+                <div class="masonry-item" data-id="1" data-img="assets/photo1.jpg" data-height="400">
+                    <img src="assets/photo1.jpg" alt="Photo du club BlaBlaRun">
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 2</p>
-                    </div>
+                <div class="masonry-item" data-id="2" data-img="assets/photo2.jpg" data-height="300">
+                    <img src="assets/photo2.jpg" alt="Photo du club BlaBlaRun">
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 3</p>
-                    </div>
+                <div class="masonry-item" data-id="3" data-img="assets/photo3.png" data-height="500">
+                    <img src="assets/photo3.png" alt="Photo du club BlaBlaRun">
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 4</p>
-                    </div>
+                <div class="masonry-item" data-id="4" data-img="assets/photo4.png" data-height="350">
+                    <img src="assets/photo4.png" alt="Photo du club BlaBlaRun">
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 5</p>
-                    </div>
+                <div class="masonry-item" data-id="5" data-img="assets/photo5.png" data-height="450">
+                    <img src="assets/photo5.png" alt="Photo du club BlaBlaRun">
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 6</p>
-                    </div>
+                <div class="masonry-item" data-id="6" data-img="assets/photo6.png" data-height="380">
+                    <img src="assets/photo6.png" alt="Photo du club BlaBlaRun">
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 7</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#1a1a1a" opacity="0.3"/>
-                        </svg>
-                        <p>Photo 8</p>
-                    </div>
+                <div class="masonry-item" data-id="7" data-img="assets/photo7.png" data-height="420">
+                    <img src="assets/photo7.png" alt="Photo du club BlaBlaRun">
                 </div>
             </div>
         </div>
@@ -474,11 +442,10 @@
                     <h4>Navigation</h4>
                     <ul>
                         <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#actualites">Actualités</a></li>
                         <li><a href="#apropos">À propos</a></li>
-                        <li><a href="#groupes">Groupes</a></li>
+                        <li><a href="#fondateur">Fondateur</a></li>
                         <li><a href="#adhesion">Adhésion</a></li>
-                        <li><a href="#infos">Infos pratiques</a></li>
+                        <li><a href="#liens">Nos liens</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
@@ -509,5 +476,23 @@
     </a>
 
     <script src="script.js"></script>
+    <script src="masonry.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleryElement = document.getElementById('masonryGallery');
+            if (galleryElement && typeof MasonryGallery !== 'undefined') {
+                galleryElement.masonryInstance = new MasonryGallery(galleryElement, {
+                    ease: 'power3.out',
+                    duration: 0.6,
+                    stagger: 0.05,
+                    animateFrom: 'bottom',
+                    scaleOnHover: true,
+                    hoverScale: 0.95,
+                    blurToFocus: true,
+                    colorShiftOnHover: false
+                });
+            }
+        });
+    </script>
 </body>
 </html>

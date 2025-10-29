@@ -10,15 +10,134 @@ const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').ma
 const lightbox = document.getElementById('imageLightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+// Liste de toutes les images cliquables
+let allClickableImages = [];
+let currentImageIndex = -1;
+
+// Fonction pour mettre à jour la liste des images
+function updateImagesList() {
+    allClickableImages = [];
+    
+    // Image actualité
+    const actualiteImg = document.querySelector('#actualiteImage img');
+    if (actualiteImg) allClickableImages.push(actualiteImg);
+    
+    // Autres images cliquables (hors galerie)
+    document.querySelectorAll('.about-image img, .founder-image img').forEach(img => {
+        allClickableImages.push(img);
+    });
+}
+
+// Fonction pour obtenir uniquement les images de la galerie
+function getGalleryImages() {
+    // Vérifier si on a des images Masonry
+    if (window.masonryImagesForLightbox && window.masonryImagesForLightbox.length > 0) {
+        return window.masonryImagesForLightbox;
+    }
+    return Array.from(document.querySelectorAll('.gallery-item img'));
+}
 
 // Fonction pour ouvrir le lightbox
 function openLightbox(imgElement) {
     if (!lightbox || !lightboxImg) return;
     
-    lightboxImg.src = imgElement.src;
-    lightboxImg.alt = imgElement.alt || 'Image';
+    // Vérifier si l'image fait partie de la galerie
+    const isGalleryImage = imgElement.closest('.gallery-item') !== null;
+    
+    if (isGalleryImage) {
+        // Si c'est une image de la galerie, utiliser uniquement les images de la galerie
+        allClickableImages = getGalleryImages();
+    } else {
+        // Sinon, utiliser toutes les images cliquables
+        updateImagesList();
+    }
+    
+    // Trouver l'index de l'image actuelle
+    currentImageIndex = allClickableImages.findIndex(img => img === imgElement);
+    if (currentImageIndex === -1) currentImageIndex = 0;
+    
+    showImage(currentImageIndex);
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    updateNavigationButtons();
+}
+
+// Fonction pour afficher une image par son index
+function showImage(index) {
+    // Utiliser les images Masonry si elles existent
+    const images = window.masonryImagesForLightbox && window.masonryImagesForLightbox.length > 0 
+        ? window.masonryImagesForLightbox 
+        : allClickableImages;
+    
+    if (!lightboxImg || images.length === 0) return;
+    
+    if (index < 0) index = images.length - 1;
+    if (index >= images.length) index = 0;
+    
+    // Mettre à jour les index globaux
+    if (window.masonryImagesForLightbox) {
+        window.currentImageIndex = index;
+    } else {
+        currentImageIndex = index;
+    }
+    
+    const img = images[index];
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt || 'Image';
+    updateNavigationButtons();
+}
+
+// Fonction pour mettre à jour la visibilité des boutons de navigation
+function updateNavigationButtons() {
+    if (!lightboxPrev || !lightboxNext) return;
+    
+    // Utiliser les images Masonry si elles existent
+    const images = window.masonryImagesForLightbox && window.masonryImagesForLightbox.length > 0 
+        ? window.masonryImagesForLightbox 
+        : allClickableImages;
+    
+    if (images.length <= 1) {
+        lightboxPrev.style.display = 'none';
+        lightboxNext.style.display = 'none';
+    } else {
+        lightboxPrev.style.display = 'flex';
+        lightboxNext.style.display = 'flex';
+    }
+}
+
+// Fonction pour image précédente
+function prevImage() {
+    // Utiliser les images Masonry si elles existent
+    const images = window.masonryImagesForLightbox && window.masonryImagesForLightbox.length > 0 
+        ? window.masonryImagesForLightbox 
+        : allClickableImages;
+    
+    if (images.length === 0) return;
+    
+    const currentIdx = window.masonryImagesForLightbox 
+        ? (window.currentImageIndex || 0)
+        : currentImageIndex;
+    
+    showImage(currentIdx - 1);
+}
+
+// Fonction pour image suivante
+function nextImage() {
+    // Utiliser les images Masonry si elles existent
+    const images = window.masonryImagesForLightbox && window.masonryImagesForLightbox.length > 0 
+        ? window.masonryImagesForLightbox 
+        : allClickableImages;
+    
+    if (images.length === 0) return;
+    
+    const currentIdx = window.masonryImagesForLightbox 
+        ? (window.currentImageIndex || 0)
+        : currentImageIndex;
+    
+    showImage(currentIdx + 1);
 }
 
 // Image actualité
@@ -31,10 +150,13 @@ if (actualiteImage) {
 }
 
 // Toutes les autres images cliquables
-const clickableImages = document.querySelectorAll('.about-image img, .founder-image img, .gallery-item img');
-clickableImages.forEach(img => {
-    img.addEventListener('click', () => {
-        openLightbox(img);
+document.addEventListener('DOMContentLoaded', () => {
+    updateImagesList();
+    
+    document.querySelectorAll('.about-image img, .founder-image img, .gallery-item img').forEach(img => {
+        img.addEventListener('click', () => {
+            openLightbox(img);
+        });
     });
 });
 
@@ -42,17 +164,37 @@ if (lightboxClose) {
     lightboxClose.addEventListener('click', closeLightbox);
 }
 
+if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prevImage();
+    });
+}
+
+if (lightboxNext) {
+    lightboxNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextImage();
+    });
+}
+
 if (lightbox) {
     lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
+        if (e.target === lightbox || e.target === lightboxImg) {
             closeLightbox();
         }
     });
 }
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    
+    if (e.key === 'Escape') {
         closeLightbox();
+    } else if (e.key === 'ArrowLeft') {
+        prevImage();
+    } else if (e.key === 'ArrowRight') {
+        nextImage();
     }
 });
 
@@ -60,6 +202,15 @@ function closeLightbox() {
     if (lightbox) {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+        currentImageIndex = -1;
+        // Réinitialiser les variables Masonry si elles existent
+        if (window.masonryImagesForLightbox) {
+            window.masonryImagesForLightbox.forEach(img => {
+                if (img.parentNode) img.parentNode.removeChild(img);
+            });
+            window.masonryImagesForLightbox = null;
+            window.currentImageIndex = -1;
+        }
     }
 }
 
@@ -296,7 +447,7 @@ if (contactForm) {
         console.log('Formulaire soumis:', { name, email, message });
         
         // Afficher un message de confirmation simple
-        alert(`Merci ${name} ! Votre message a été envoyé. 🏃‍♂️`);
+        alert(`Merci ${name} ! Votre message a été envoyé.`);
         
         contactForm.reset();
     });
@@ -378,7 +529,7 @@ if (isReducedMotion) {
 // ==========================================
 // CONSOLE MESSAGE
 // ==========================================
-console.log('%c🏃 BlaBlaRun Club - Nancy', 'font-size: 24px; font-weight: bold; color: #3b82f6;');
+console.log('%cBlaBlaRun Club - Nancy', 'font-size: 24px; font-weight: bold; color: #3b82f6;');
 console.log('%cCourir, Partager, Sourire.', 'font-size: 16px; color: #60a5fa; font-weight: 600;');
 console.log('%cRendez-vous chaque mardi à 18h30 - Place Stanislas, Nancy', 'font-size: 14px; color: #b0b0b0;');
 
@@ -389,7 +540,7 @@ window.addEventListener('load', () => {
     if (window.performance) {
         const perfData = window.performance.timing;
         const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-        console.log(`⚡ Page chargée en ${pageLoadTime}ms`);
+        console.log(`Page chargée en ${pageLoadTime}ms`);
     }
 });
 
@@ -460,7 +611,7 @@ if (checkoutButton) {
 /*
 if (checkoutButton) {
     checkoutButton.addEventListener('click', () => {
-        alert('🎉 Merci pour votre intérêt ! Le système de paiement sera bientôt opérationnel.\n\nPour l\'instant, contactez-nous directement pour adhérer.');
+            alert('Merci pour votre intérêt ! Le système de paiement sera bientôt opérationnel.\n\nPour l\'instant, contactez-nous directement pour adhérer.');
         // Rediriger vers la section contact
         window.location.hash = '#rejoindre';
     });
