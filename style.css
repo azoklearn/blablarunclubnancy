@@ -386,14 +386,18 @@ ul {
 }
 
 .hero-title {
-    font-family: "Michroma", sans-serif;
-    font-weight: 400;
+    font-family: "Graphit", "Space Grotesk", sans-serif;
+    font-weight: 700;
     font-style: normal;
     font-size: 5.5rem;
     margin-bottom: var(--spacing-md);
     line-height: 1.1;
     color: var(--color-black);
     letter-spacing: -2px;
+}
+
+.club-blue {
+    color: var(--color-lime);
 }
 
 .hero-tagline {
