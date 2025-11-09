@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlaBlaRun Club - Nancy</title>
-    <meta name="description" content="BlaBlaRun Club - Footing hebdomadaire à Nancy. Courir, Partager, Sourire.">
-    <link rel="icon" type="image/jpeg" href="assets/logo.jpeg">
+    
+    <!-- SEO Basique -->
+    <title>BlaBlaRun Club Nancy - Running et Footing Convivial tous les Mardis</title>
+    <meta name="description" content="Rejoignez le BlaBlaRun Club à Nancy ! Footing convivial tous les mardis 18h30 Place Stanislas. 3 groupes d'allure pour tous niveaux. Courir, Partager, Sourire.">
+    <meta name="keywords" content="running Nancy, footing Nancy, club running, course à pied Nancy, BlaBlaRun, sport Nancy, running convivial, Place Stanislas">
+    <meta name="author" content="BlaBlaRun Club">
+    <link rel="canonical" href="https://blablarunclubnancy.netlify.app/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://blablarunclubnancy.netlify.app/">
+    <meta property="og:title" content="BlaBlaRun Club Nancy - Running Convivial tous les Mardis">
+    <meta property="og:description" content="Rejoignez le BlaBlaRun Club à Nancy ! Footing convivial tous les mardis 18h30 Place Stanislas. 3 groupes d'allure pour tous niveaux.">
+    <meta property="og:image" content="https://blablarunclubnancy.netlify.app/assets/logo.png">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="BlaBlaRun Club Nancy">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://blablarunclubnancy.netlify.app/">
+    <meta name="twitter:title" content="BlaBlaRun Club Nancy - Running Convivial tous les Mardis">
+    <meta name="twitter:description" content="Rejoignez le BlaBlaRun Club à Nancy ! Footing convivial tous les mardis 18h30 Place Stanislas.">
+    <meta name="twitter:image" content="https://blablarunclubnancy.netlify.app/assets/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="shortcut icon" href="assets/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,6 +41,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/graphit" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="masonry.css">
     <script src="https://js.stripe.com/v3/"></script>
@@ -120,29 +146,25 @@
             
             <!-- Nos groupes d'allure -->
             <div class="about-groups">
-                <h3 class="about-subsection-title">Nos groupes d'allure</h3>
-                <p class="section-subtitle">Quel que soit votre niveau, il y a un groupe pour vous</p>
+                <h3 class="about-subsection-title">Nos 3 groupes d'allure</h3>
                 <div class="groups-grid">
                     <div class="group-card">
                         <div class="group-badge cool">Cool</div>
                         <h3>Groupe Cool</h3>
-                        <div class="group-pace">~6:30 min/km</div>
+                        <div class="group-pace">~7:00 min/km</div>
                         <p>Pour les débutants ou ceux qui préfèrent une allure tranquille et conviviale</p>
-                        <div class="group-distance">8-10 km</div>
                     </div>
                     <div class="group-card featured">
                         <div class="group-badge intermediate">Intermédiaire</div>
                         <h3>Groupe Intermédiaire</h3>
-                        <div class="group-pace">~5:30 min/km</div>
+                        <div class="group-pace">~6:15 min/km</div>
                         <p>Pour les coureurs réguliers qui cherchent un bon équilibre effort/plaisir</p>
-                        <div class="group-distance">10-12 km</div>
                     </div>
                     <div class="group-card">
                         <div class="group-badge fast">Rapide</div>
                         <h3>Groupe Rapide</h3>
-                        <div class="group-pace">~4:30 min/km</div>
+                        <div class="group-pace">~5:30 min/km</div>
                         <p>Pour les coureurs confirmés en quête de performance et de dépassement</p>
-                        <div class="group-distance">12-15 km</div>
                     </div>
                 </div>
             </div>
@@ -240,10 +262,10 @@
                             <li>✓ Événements exclusifs</li>
                             <li>✓ Soutien au développement du club</li>
                         </ul>
-                        <button id="checkout-button" class="btn-primary btn-adhesion">
-                            Adhérer maintenant
+                        <button id="checkout-button" class="btn-primary btn-adhesion" disabled>
+                            Bientôt disponible
                         </button>
-                        <p class="payment-info">Paiement sécurisé </p>
+                        <p class="payment-info">Le système d'adhésion arrive prochainement</p>
                     </div>
                 </div>
                 <div class="adhesion-details">
@@ -287,8 +309,8 @@
             </div>
             <div class="links-grid">
                 <a href="https://www.strava.com/clubs/1558459/discussion" target="_blank" rel="noopener noreferrer" class="link-card">
-                    <div class="link-icon">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="link-icon link-icon-strava">
+                        <svg width="80" height="80" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 5L13 20H17L20 13L23 20H27L20 5Z" fill="#3b82f6"/>
                             <path d="M23 20L20 27L17 20H20H23Z" fill="#3b82f6" opacity="0.6"/>
                         </svg>
@@ -300,9 +322,7 @@
                 </a>
                 <a href="https://drive.google.com/drive/folders/1oP1xuW8OSzuzBJgjElOf0x_RNZp8PrbS" target="_blank" rel="noopener noreferrer" class="link-card">
                     <div class="link-icon">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 8L20 8L28 8L32 15L24 28H16L8 15L12 8Z" fill="#3b82f6"/>
-                        </svg>
+                        <img src="assets/googledrive.png" alt="Google Drive" width="40" height="40">
                     </div>
                     <div class="link-text">
                         <h4>Google Drive</h4>
@@ -363,8 +383,8 @@
                 <p class="section-subtitle">Quelques moments mémorables du club</p>
             </div>
             <div id="masonryGallery" class="list">
-                <div class="masonry-item" data-id="1" data-img="assets/photo1.jpg" data-height="400">
-                    <img src="assets/photo1.jpg" alt="Photo du club BlaBlaRun">
+                <div class="masonry-item" data-id="1" data-img="assets/chausette.png" data-height="400">
+                    <img src="assets/chausette.png" alt="Photo du club BlaBlaRun">
                 </div>
                 <div class="masonry-item" data-id="2" data-img="assets/photo2.jpg" data-height="300">
                     <img src="assets/photo2.jpg" alt="Photo du club BlaBlaRun">
@@ -383,6 +403,9 @@
                 </div>
                 <div class="masonry-item" data-id="7" data-img="assets/photo7.png" data-height="420">
                     <img src="assets/photo7.png" alt="Photo du club BlaBlaRun">
+                </div>
+                <div class="masonry-item" data-id="1" data-img="assets/photo1.png" data-height="400">
+                    <img src="assets/photo1.png" alt="Photo du club BlaBlaRun">
                 </div>
             </div>
         </div>
@@ -459,6 +482,10 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 BlaBlaRun Club. Tous droits réservés.</p>
+                <p class="footer-credit">
+                    Réalisé par <a href="https://noanwebdesign.netlify.app" target="_blank" rel="noopener noreferrer">NoanWeb</a> • 
+                    Instagram : <a href="https://www.instagram.com/noan.web/" target="_blank" rel="noopener noreferrer">@noan.web</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -475,6 +502,63 @@
         </svg>
         <span class="circular-badge-arrow">→</span>
     </a>
+
+    <!-- Données structurées Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SportsOrganization",
+        "name": "BlaBlaRun Club",
+        "url": "https://blablarunclubnancy.netlify.app",
+        "logo": "https://blablarunclubnancy.netlify.app/assets/logo.png",
+        "description": "Club de running convivial à Nancy. Footing hebdomadaire tous les mardis à 18h30 Place Stanislas.",
+        "sport": "Running",
+        "founder": {
+            "@type": "Person",
+            "name": "Valentin Bourrel",
+            "sameAs": "https://www.instagram.com/valentinbourrel/"
+        },
+        "location": {
+            "@type": "Place",
+            "name": "Place Stanislas",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Nancy",
+                "addressCountry": "FR"
+            }
+        },
+        "event": {
+            "@type": "SportsEvent",
+            "name": "Footing BlaBlaRun Club",
+            "description": "Footing hebdomadaire ouvert à tous, 3 groupes d'allure disponibles",
+            "startDate": "2025-11-02T18:30:00+01:00",
+            "eventSchedule": {
+                "@type": "Schedule",
+                "byDay": "Tuesday",
+                "startTime": "18:30:00",
+                "endTime": "20:00:00"
+            },
+            "location": {
+                "@type": "Place",
+                "name": "Place Stanislas",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Nancy",
+                    "addressCountry": "FR"
+                }
+            },
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "EUR",
+                "availability": "https://schema.org/InStock"
+            }
+        },
+        "sameAs": [
+            "https://www.strava.com/clubs/1558459/discussion"
+        ]
+    }
+    </script>
 
     <script src="script.js"></script>
     <script src="masonry.js"></script>

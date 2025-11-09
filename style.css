@@ -17,6 +17,7 @@
     
     /* Polices personnalisées */
     --font-michroma: 'Michroma', sans-serif;
+    --font-sofia-pro-black: 'Sofia Pro Black', 'Graphit', 'Space Grotesk', sans-serif;
     
     /* Espacements */
     --spacing-xs: 0.5rem;
@@ -292,7 +293,7 @@ ul {
     width: 100%;
     height: 100%;
     z-index: 0;
-    background-image: url('assets/runner.jpeg');
+    background-image: url('assets/runner3.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -386,14 +387,13 @@ ul {
 }
 
 .hero-title {
-    font-family: "Graphit", "Space Grotesk", sans-serif;
+    font-family: var("");
     font-weight: 700;
-    font-style: normal;
     font-size: 5.5rem;
     margin-bottom: var(--spacing-md);
-    line-height: 1.1;
     color: var(--color-black);
-    letter-spacing: -2px;
+    letter-spacing: -3px;
+    text-transform: uppercase;
 }
 
 .club-blue {
@@ -753,6 +753,10 @@ section {
     text-align: center;
 }
 
+.about-groups-subtitle {
+    text-align: center;
+}
+
 /* ==========================================
    SECTION FONDATEUR
    ========================================== */
@@ -1056,6 +1060,21 @@ section {
     margin-bottom: var(--spacing-md);
 }
 
+.btn-adhesion:disabled {
+    background: var(--color-grey-light);
+    color: var(--color-grey);
+    border-color: var(--color-grey-light);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-adhesion:disabled:hover {
+    transform: none;
+    background: var(--color-grey-light);
+    color: var(--color-grey);
+    border-color: var(--color-grey-light);
+}
+
 .payment-info {
     font-size: 0.9rem;
     color: var(--color-grey);
@@ -1228,6 +1247,18 @@ section {
 
 .link-icon {
     flex-shrink: 0;
+}
+
+.link-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+}
+
+.link-icon-strava svg {
+    width: 80px;
+    height: 80px;
 }
 
 .link-text {
@@ -1564,6 +1595,25 @@ section {
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--color-grey-light);
     color: #666666;
+}
+
+.footer-credit {
+    margin-top: var(--spacing-sm);
+    font-size: 0.85rem;
+    color: #888888;
+    font-style: italic;
+}
+
+.footer-credit a {
+    color: var(--color-lime);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.footer-credit a:hover {
+    color: var(--color-black);
+    text-decoration: underline;
 }
 
 /* ==========================================

@@ -545,10 +545,11 @@ window.addEventListener('load', () => {
 });
 
 // ==========================================
-// STRIPE PAYMENT - ADHÉSION
+// STRIPE PAYMENT - ADHÉSION - TEMPORAIREMENT DÉSACTIVÉ
 // ==========================================
 // IMPORTANT: Remplacez 'YOUR_STRIPE_PUBLISHABLE_KEY' par votre vraie clé publique Stripe
 // Obtenez votre clé sur: https://dashboard.stripe.com/apikeys
+/*
 const stripePublicKey = 'YOUR_STRIPE_PUBLISHABLE_KEY';
 const stripe = window.Stripe ? window.Stripe(stripePublicKey) : null;
 
@@ -605,15 +606,14 @@ if (checkoutButton) {
         }
     });
 }
+*/
 
-// Alternative simple pour les tests (sans backend)
-// Décommentez ceci pour tester l'interface sans Stripe réel
-/*
+// Alternative simple - Message "Bientôt disponible"
+const checkoutButton = document.getElementById('checkout-button');
 if (checkoutButton) {
     checkoutButton.addEventListener('click', () => {
-            alert('Merci pour votre intérêt ! Le système de paiement sera bientôt opérationnel.\n\nPour l\'instant, contactez-nous directement pour adhérer.');
+        alert('Le système d\'adhésion en ligne arrive bientôt !\n\nEn attendant, venez nous rencontrer le mardi à 18h30 Place Stanislas pour adhérer sur place.');
         // Rediriger vers la section contact
         window.location.hash = '#rejoindre';
     });
 }
-*/
